@@ -31,7 +31,7 @@ class SkinController extends Controller
         if (Storage::exists($skinPath)) {
             // Return the skin file
             return response()->file(storage_path("app/{$skinPath}"));
-        } else {
+        } else if (Storage::exists($defaultSkinPath)) {
             // Return the default skin file
             return response()->file(storage_path("app/{$defaultSkinPath}"));
         }
