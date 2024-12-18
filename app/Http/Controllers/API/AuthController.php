@@ -18,9 +18,9 @@ class AuthController extends Controller
         $user = User::where('username', $username)->first();
 
         if (!$user || !Hash::check($password, $user->password)) {
-            return response()->json('Неверный логин или пароль', 401);
+            echo "Неверный логин или пароль";
         }
 
-        return response()->json("OK:$username", 200);
+        echo "OK:$username";
     }
 }
