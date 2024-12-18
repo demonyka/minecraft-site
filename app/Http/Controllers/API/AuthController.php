@@ -19,6 +19,7 @@ class AuthController extends Controller
 
         if (!$user || !Hash::check($password, $user->password)) {
             echo "Неверный логин или пароль";
+            return;
         }
 
         echo "OK:$username";
