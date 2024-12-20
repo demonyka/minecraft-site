@@ -14,7 +14,7 @@ export default {
 
 <template>
     <div class="card">
-        <h1>MiNEON</h1>
+        <h1 @click="section = 'meme'" style="cursor: pointer">MiNEON</h1>
         <div class="buttons">
             <button
                 @click="section = 'login'"
@@ -37,6 +37,12 @@ export default {
             v-show="section === 'register'"
             @registered="section = 'login'"
         />
+        <p
+            style="color: white"
+            v-if="section === 'meme'"
+        >
+            майнон, 19.0, индастриал крафт, реклама майнкрафт сервера блять. пвп пве блять, вся хуйня создана для вас, хули не играете пидарасы. фу, ебаные клопы идите нахуй, пидарасы тупые блять, ауе нахуй майнкрафт приколы, ауе нахуй я сказал, ауе <br><br>(с) Del1rium
+        </p>
     </div>
 </template>
 
