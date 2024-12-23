@@ -22,6 +22,11 @@ class AuthController extends Controller
             return;
         }
 
+        if ($user->whitelisted_until !== null && $user->whitelisted_until < now()) {
+            echo "У вас нет действующей проходки";
+            return;
+        }
+
         echo "OK:$username";
     }
 }

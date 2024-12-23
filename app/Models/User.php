@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'password',
+        'whitelisted_until'
     ];
 
     /**
@@ -38,6 +39,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'created_at' => 'datetime'
+        'created_at' => 'datetime',
+        'whitelisted_until' => 'datetime'
     ];
 }
