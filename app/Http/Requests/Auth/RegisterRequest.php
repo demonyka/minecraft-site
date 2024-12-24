@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterRequest extends FormRequest
 {
-    public function rules()
+    public function rules(): array
     {
         return [
             'username' => 'required|unique:users,username|min:4|max:16',
@@ -16,15 +16,16 @@ class RegisterRequest extends FormRequest
         ];
     }
 
-    public function register()
+    public function register(): void
     {
         $user = new User();
         $user->username = $this->input('username');
+        $user->email = $this->input('email');
         $user->password = Hash::make($this->input('password'));
         $user->save();
     }
 
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }

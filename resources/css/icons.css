@@ -1,0 +1,29 @@
+i.fa {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+i.fa.login {
+    background-image: url("/storage/assets/icons/login.svg");
+}
+
+i.fa.logout {
+    background-image: url("/storage/assets/icons/logout.svg");
+}
+
+i.fa.user {
+    background-image: url("/storage/assets/icons/person.svg");
+}
+
+i.fa.book {
+    background-image: url("/storage/assets/icons/book.svg");
+}
+
+i.fa.map {
+    background-image: url("/storage/assets/icons/map.svg");
+}

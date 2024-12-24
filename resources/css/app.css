@@ -1,9 +1,5 @@
 :root {
-    --bg-color: #232323;
-    --text-color: #fff;
-    --block-bg-color: #323232;
-    --block-border-radius: 12px;
-    --primary-color: #8a5be3;
+
 }
 
 * {
@@ -19,8 +15,8 @@ body {
     height: 100vh;
     position: fixed;
     overflow: hidden;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background: #000;
+    color: #fff;
     transition: none;
 }
 
@@ -33,4 +29,15 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
+}
+
+button, a {
+    cursor: pointer;
+}
+
+button.text {
+    background: none;
+    border: none;
+    outline: none;
+    color: #fff;
 }
