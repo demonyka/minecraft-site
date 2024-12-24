@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/auth')->group(function () {
     Route::middleware('guest')->group(function () {
-        Route::inertia('/', 'Auth/Index')->name('auth.index');
+        Route::inertia('/login', 'Auth/Login')->name('auth.login');
         Route::post('/register', [RegisterController::class, 'store'])->name('auth.register');
         Route::post('/login', [LoginController::class, 'store'])->name('auth.login');
     });

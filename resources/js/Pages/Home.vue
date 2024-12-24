@@ -2,14 +2,14 @@
 import HomeLayout from "@/Layouts/HomeLayout.vue";
 import Logo from "@/Components/Logo.vue";
 import IconButton from "@/Components/IconButton.vue";
-import GuestLayout from "@/Layouts/GuestLayout.vue";
 import {Head} from "@inertiajs/vue3";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import McButton from "@/Components/McButton.vue";
+import GuestLayout from "@/Layouts/GuestLayout.vue";
 
 export default {
     components: {
-        AuthenticatedLayout,
         GuestLayout,
+        McButton,
         IconButton,
         Logo,
         HomeLayout,
@@ -32,22 +32,12 @@ export default {
     <Head title="Главная"/>
     <HomeLayout>
         <Logo class="logo" :class="{'active': loaded}"/>
-        <transition name="fade">
-            <section v-if="loaded" class="buttons">
-                <IconButton icon="book">
-                    <template #label>
-                        Правила
-                    </template>
-                </IconButton>
-                <IconButton icon="map">
-                    <template #label>
-                        Карта
-                    </template>
-                </IconButton>
+        <transition-group name="fade">
+            <section v-if="loaded">
                 <GuestLayout v-if="!$page.props.auth.user"/>
-                <AuthenticatedLayout v-else/>
+                <McButton>Скачать лаунчер</McButton>
             </section>
-        </transition>
+        </transition-group>
     </HomeLayout>
 </template>
 
@@ -56,17 +46,17 @@ export default {
         position: absolute;
     }
     .logo.active {
-        transform: translateY(-200px);
+        transform: translateY(-250px);
     }
     .fade-enter-active, .fade-leave-active {
         transition: opacity 1s linear;
     }
-    section.buttons {
+    section {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 35px;
-        width: max-content;
-        flex-wrap: wrap; /* Если нужно, чтобы элементы переносились */
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        width: 28rem;
     }
 </style>

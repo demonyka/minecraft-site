@@ -2,11 +2,14 @@ import './bootstrap';
 import '../css/app.css';
 import '../css/icons.css';
 import '../css/anim.css';
+import '../css/fonts.css';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
+import contenteditable from 'vue-contenteditable'
+
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -17,6 +20,7 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .use(contenteditable)
             .mount(el);
     },
     progress: {
