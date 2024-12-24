@@ -21,6 +21,11 @@ export default {
             type: String,
             required: false,
             default: 'text'
+        },
+        name: {
+            type: String,
+            required: false,
+            default: ''
         }
     },
     methods: {
@@ -41,7 +46,7 @@ export default {
             :value="modelValue"
             :class="{'invalid': invalid}"
             :type="type"
-            autocomplete="off"
+            :name="name"
         />
     </div>
 </template>

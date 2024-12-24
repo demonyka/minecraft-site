@@ -79,12 +79,14 @@ export default {
             <McInput
                 v-model="form.username"
                 label="Никнейм"
+                name="username"
                 :invalid="form.errors.username"
                 @input="form.clearErrors('username')"
             />
             <McInput
                 style="margin-top: 12px"
                 v-model="form.email"
+                name="email"
                 label="Адрес электрнной почты"
                 :invalid="form.errors.email"
                 @input="form.clearErrors('email')"
@@ -93,6 +95,7 @@ export default {
                 style="margin-top: 12px"
                 v-model="form.password"
                 label="Пароль"
+                name="new-password"
                 :invalid="form.errors.password"
                 type="password"
                 @input="form.clearErrors('password')"
@@ -101,6 +104,7 @@ export default {
                 style="margin-top: 12px"
                 v-model="form.password_confirmation"
                 label="Подтверждение пароля"
+                name="new-password"
                 :invalid="form.errors.password_confirmation"
                 type="password"
                 @input="form.clearErrors('password_confirmation')"

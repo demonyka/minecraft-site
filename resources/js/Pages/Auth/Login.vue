@@ -62,6 +62,7 @@ export default {
         <form @submit.prevent="submit" spellcheck="false" autocomplete="off">
             <McInput
                 v-model="form.username"
+                name="username"
                 label="Никнейм"
                 :invalid="form.errors.username"
                 @input="form.clearErrors('username')"
@@ -69,6 +70,7 @@ export default {
             <McInput
                 style="margin-top: 12px"
                 v-model="form.password"
+                name="password"
                 label="Пароль"
                 :invalid="form.errors.password"
                 type="password"
