@@ -41,6 +41,7 @@ export default {
             :value="modelValue"
             :class="{'invalid': invalid}"
             :type="type"
+            autocomplete="off"
         />
     </div>
 </template>
