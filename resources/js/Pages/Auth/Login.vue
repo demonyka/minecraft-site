@@ -59,7 +59,7 @@ export default {
     <Head title="Авторизация"/>
     <div class="container">
         <h1>Авторизация</h1>
-        <form @submit.prevent="submit" spellcheck="false">
+        <form @submit.prevent="submit" spellcheck="false" autocomplete="off">
             <McInput
                 v-model="form.username"
                 label="Никнейм"

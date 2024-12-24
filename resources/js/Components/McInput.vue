@@ -91,9 +91,4 @@ label.invalid,
 .editable.invalid::placeholder {
     color: firebrick;
 }
-.input:-webkit-autofill {transition: background-color 5000s ease-in-out 0s;}
-input:-webkit-autofill {
-    -webkit-appearance: none;
-    background-color: transparent !important;
-}
 </style>
