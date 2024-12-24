@@ -3,11 +3,13 @@ import McInput from "@/Components/McInput.vue";
 import McButton from "@/Components/McButton.vue";
 import {useForm} from "@inertiajs/vue3";
 import {showError} from "@/scripts.js";
+import {Head} from "@inertiajs/vue3";
 
 export default {
     components: {
         McInput,
         McButton,
+        Head
     },
     data() {
         return {
@@ -54,6 +56,7 @@ export default {
 </script>
 
 <template>
+    <Head title="Авторизация"/>
     <div class="container">
         <h1>Авторизация</h1>
         <form @submit.prevent="submit" spellcheck="false">

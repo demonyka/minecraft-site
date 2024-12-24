@@ -1,11 +1,12 @@
 <script>
 import McInput from "@/Components/McInput.vue";
 import McButton from "@/Components/McButton.vue";
-import {useForm} from "@inertiajs/vue3";
+import {Head, useForm} from "@inertiajs/vue3";
 import {showError, showMessage} from "@/scripts.js";
 
 export default {
     components: {
+        Head,
         McInput,
         McButton,
     },
@@ -71,6 +72,7 @@ export default {
 </script>
 
 <template>
+    <Head title="Регистрация"/>
     <div class="container">
         <h1>Регистрация</h1>
         <form @submit.prevent="submit" spellcheck="false">
