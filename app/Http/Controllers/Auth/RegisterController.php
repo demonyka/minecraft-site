@@ -11,6 +11,6 @@ class RegisterController extends Controller
     {
         $request->register();
 
-        return back()->with('success', 'Аккаунт зарегистрирован');
+        return redirect()->route('auth.login')->with('success', 'Аккаунт зарегистрирован');
     }
 }

@@ -5,9 +5,11 @@ import IconButton from "@/Components/IconButton.vue";
 import {Head} from "@inertiajs/vue3";
 import McButton from "@/Components/McButton.vue";
 import GuestLayout from "@/Layouts/GuestLayout.vue";
+import AuthLayout from "@/Layouts/AuthLayout.vue";
 
 export default {
     components: {
+      AuthLayout,
         GuestLayout,
         McButton,
         IconButton,
@@ -35,6 +37,7 @@ export default {
         <transition-group name="fade">
             <section v-if="loaded">
                 <GuestLayout v-if="!$page.props.auth.user"/>
+                <AuthLayout v-else/>
                 <McButton>Скачать лаунчер</McButton>
             </section>
         </transition-group>

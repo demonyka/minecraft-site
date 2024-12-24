@@ -61,7 +61,6 @@ label {
     font-family: "Minecraft", sans-serif;
     color: white;
     background-color: black;
-    text-shadow: 3px 3px #4C4C4C;
     outline: 2px solid #000;
     width: 100%;
     overflow: hidden;

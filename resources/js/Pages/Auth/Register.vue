@@ -2,7 +2,7 @@
 import McInput from "@/Components/McInput.vue";
 import McButton from "@/Components/McButton.vue";
 import {useForm} from "@inertiajs/vue3";
-import {showError} from "@/scripts.js";
+import {showError, showMessage} from "@/scripts.js";
 
 export default {
     components: {
@@ -13,7 +13,9 @@ export default {
         return {
             form: useForm({
                 username: "",
+                email: "",
                 password: "",
+                password_confirmation: "",
             })
         }
     },
@@ -26,36 +28,51 @@ export default {
             if (this.form.username.length < 4) {
                 this.form.setError('username', "Длина никнейма не может быть меньше 4 символов");
             }
+            if (!this.form.email.length > 0) {
+                this.form.setError('email', "Почта обязательна к заполнению");
+            }
+            if (this.form.email.length > 255) {
+                this.form.setError('email', "Длина почты не может превышать 255 символов")
+            }
             if (this.form.password.length < 6) {
                 this.form.setError('password', "Длина пароля не может быть меньше 6 символов");
             }
             if (this.form.password.length > 64) {
                 this.form.setError('password', "Длина пароля не может превышать 64 символов");
             }
+            if (this.form.password !== this.form.password_confirmation) {
+                this.form.setError('password_confirmation', "Пароли не совпадают");
+            }
 
             if (this.form.hasErrors) {
                 Object.values(this.form.errors).forEach((error) => {
                     showError(error);
                 });
-                this.form.reset('password');
+                this.form.reset('password_confirmation');
                 return;
             }
-            this.form.post(route('auth.login'), {
+            this.form.post(route('auth.register'), {
+                onSuccess: (data) => {
+                    showMessage('Аккаунт успешно зарегистрирован');
+                    this.form.reset();
+                    this.$emit('registered')
+                },
                 onError: (errors) => {
                     Object.values(errors).forEach((error) => {
                         showError(error);
-                        this.form.reset('password');
+                        this.form.reset('password_confirmation');
                     })
                 }
             })
         }
+
     }
 }
 </script>
 
 <template>
     <div class="container">
-        <h1>Авторизация</h1>
+        <h1>Регистрация</h1>
         <form @submit.prevent="submit" spellcheck="false">
             <McInput
                 v-model="form.username"
@@ -65,18 +82,29 @@ export default {
             />
             <McInput
                 style="margin-top: 12px"
+                v-model="form.email"
+                label="Адрес электрнной почты"
+                :invalid="form.errors.email"
+                @input="form.clearErrors('email')"
+            />
+            <McInput
+                style="margin-top: 12px"
                 v-model="form.password"
                 label="Пароль"
                 :invalid="form.errors.password"
                 type="password"
                 @input="form.clearErrors('password')"
             />
-            <McButton type="submit" style="margin-top: 6px">Войти</McButton>
-            <section class="sub-buttons">
-                <McButton type="button" @click="$inertia.visit(route('auth.register'))">Нет аккаунта?</McButton>
-                <McButton type="button">Забыли пароль?</McButton>
-            </section>
-            <McButton type="button" style="margin-top: 32px" @click="$inertia.visit(route('home'))">На главную</McButton>
+            <McInput
+                style="margin-top: 12px"
+                v-model="form.password_confirmation"
+                label="Подтверждение пароля"
+                :invalid="form.errors.password_confirmation"
+                type="password"
+                @input="form.clearErrors('password_confirmation')"
+            />
+            <McButton type="submit" style="margin-top: 6px">Зарегистрироваться</McButton>
+            <McButton type="button" @click="$inertia.visit(route('auth.login'))">Уже есть аккаунт?</McButton>
         </form>
     </div>
 </template>

@@ -41,9 +41,7 @@ export default {
             }
             this.form.post(route('auth.register'), {
                 onSuccess: (data) => {
-                    showMessage('Аккаунт успешно зарегистрирован');
                     this.form.reset();
-                    this.$emit('registered')
                 },
                 onError: (errors) => {
                     Object.values(errors).forEach((error) => {

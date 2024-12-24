@@ -1,6 +1,7 @@
 <script>
 export default {
     name: "McButton",
+    props: ['type'],
     methods: {
         click() {
             const audio = new Audio('/storage/assets/sounds/minecraft_click.mp3');
@@ -13,7 +14,7 @@ export default {
 </script>
 
 <template>
-    <button @click="click">
+    <button :type="type" @click="click">
         <slot/>
     </button>
 </template>
