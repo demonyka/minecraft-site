@@ -22,16 +22,23 @@ export default {
     data() {
         return {
             loaded: false,
-            showSnowflakes: false
+            showSnowflakes: false,
+            downloadCooldown: false
         };
     },
     methods: {
         downloadLauncher() {
-            // Создаём ссылку для скачивания
+            if (this.downloadCooldown) {
+                return;
+            }
+            this.downloadCooldown = true;
             const link = document.createElement('a');
             link.href = '/storage/download/Launcher.jar'; // Путь к файлу
             link.download = 'Launcher.jar'; // Имя файла при скачивании
             link.click(); // Инициируем скачивание
+            setTimeout(() => {
+                this.downloadCooldown = false;
+            })
         },
     },
     mounted() {
