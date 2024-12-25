@@ -26,9 +26,14 @@ export default {
         };
     },
     mounted() {
-        setTimeout(() => {
-            this.loaded = true;
-        }, 1000);
+        const urlParams = new URLSearchParams(window.location.search);
+        const launcher = urlParams.get('launcher');
+
+        if (launcher !== 'true') {
+            setTimeout(() => {
+                this.loaded = true;
+            }, 1000);
+        }
 
         const currentDate = new Date();
         const startSnowflakes = new Date(currentDate.getFullYear(), 11, 1); // 1 декабря

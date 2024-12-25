@@ -1,3 +1,5 @@
 *
 !.gitignore
 !assets/
+!skins/default.png
+!capes/default.png

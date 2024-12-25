@@ -21,6 +21,8 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'skin_url',
+        'cape_url',
         'whitelisted_until'
     ];
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\SkinController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,4 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::prefix('/v1')->group(function () {
+    Route::get('/login', [AuthController::class, 'login']);
+    Route::get('/skin/{username}', [SkinController::class, 'getSkin']);
+    Route::get('/cape/{username}', [SkinController::class, 'getCape']);
+});
