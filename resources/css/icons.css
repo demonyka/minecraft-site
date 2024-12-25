@@ -27,3 +27,7 @@ i.fa.book {
 i.fa.map {
     background-image: url("/storage/assets/icons/map.svg");
 }
+
+i.fa.checkmark {
+    background-image: url("/storage/assets/icons/checkmark.svg");
+}

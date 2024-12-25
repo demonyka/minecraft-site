@@ -14,3 +14,21 @@
     vertical-align: bottom;
     margin-top: .75rem;
 }
+
+.Toastify__toast-theme--colored.Toastify__toast--default.achievement {
+    background: url(/storage/assets/images/achievement_toast.png) !important;
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    color: white !important;
+    padding: 8px 16px !important;
+
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--default.achievement .Toastify__toast-icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

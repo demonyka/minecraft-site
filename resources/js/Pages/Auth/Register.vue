@@ -2,7 +2,8 @@
 import McInput from "@/Components/McInput.vue";
 import McButton from "@/Components/McButton.vue";
 import {Head, useForm} from "@inertiajs/vue3";
-import {showMessage} from "@/scripts.js";
+import {showAchievement, showMessage} from "@/scripts.js";
+import Checkmark from "@/Components/Icons/Checkmark.vue";
 
 export default {
     components: {
@@ -54,7 +55,7 @@ export default {
             }
             this.form.post(route('auth.register'), {
                 onSuccess: (data) => {
-                    showMessage('Аккаунт успешно зарегистрирован');
+                    showAchievement('Аккаунт успешно зарегистрирован', Checkmark);
                     this.form.reset();
                     this.$emit('registered')
                 },
