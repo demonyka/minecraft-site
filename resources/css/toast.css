@@ -1,3 +1,7 @@
+.Toastify__toast {
+    margin-bottom: 8px !important;
+}
+
 .Toastify__toast-theme--colored.Toastify__toast--default {
     background: url(/storage/assets/images/toast.png) !important;
     background-size: 100% 100% !important;
