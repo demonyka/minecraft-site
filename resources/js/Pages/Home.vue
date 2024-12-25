@@ -29,7 +29,7 @@ export default {
         downloadLauncher() {
             // Создаём ссылку для скачивания
             const link = document.createElement('a');
-            link.href = '/storage/assets/download/Launcher.jar'; // Путь к файлу
+            link.href = '/storage/download/Launcher.jar'; // Путь к файлу
             link.download = 'Launcher.jar'; // Имя файла при скачивании
             link.click(); // Инициируем скачивание
         },
