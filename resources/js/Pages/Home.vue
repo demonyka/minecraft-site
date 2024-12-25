@@ -38,7 +38,7 @@ export default {
             link.click(); // Инициируем скачивание
             setTimeout(() => {
                 this.downloadCooldown = false;
-            })
+            }, 5000)
         },
     },
     mounted() {
