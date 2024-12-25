@@ -4,7 +4,7 @@ export default {
     data() {
         const splashes = [
             "пвп пве",
-            "mineon 10.0",
+            "mineon 19.0",
             "где коммиты",
             "где мои алмазы?",
             "майнкрафт приколы",
