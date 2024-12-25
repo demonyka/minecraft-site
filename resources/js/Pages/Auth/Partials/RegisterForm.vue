@@ -1,6 +1,6 @@
 <script>
 import {useForm} from "@inertiajs/vue3";
-import {showError, showMessage} from "@/scripts.js";
+import {showMessage} from "@/scripts.js";
 
 export default {
     name: "RegisterForm",
@@ -34,7 +34,7 @@ export default {
 
             if (this.form.hasErrors) {
                 Object.values(this.form.errors).forEach((error) => {
-                    showError(error);
+                    showMessage(error);
                 });
                 this.form.reset('password_confirmation');
                 return;
@@ -45,7 +45,7 @@ export default {
                 },
                 onError: (errors) => {
                     Object.values(errors).forEach((error) => {
-                        showError(error);
+                        showMessage(error);
                         this.form.reset('password_confirmation');
                     })
                 }

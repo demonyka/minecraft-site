@@ -1,0 +1,16 @@
+.Toastify__toast-theme--colored.Toastify__toast--default {
+    background: url(/storage/assets/images/toast.png) !important;
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    color: black !important;
+    padding: 8px 16px !important;
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--default [data-testid="toast-content"] {
+    font-family: "Minecraft", sans-serif !important;
+    line-height: 1.2rem;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-top: .75rem;
+}

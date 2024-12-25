@@ -2,8 +2,8 @@
 import McInput from "@/Components/McInput.vue";
 import McButton from "@/Components/McButton.vue";
 import {useForm} from "@inertiajs/vue3";
-import {showError} from "@/scripts.js";
 import {Head} from "@inertiajs/vue3";
+import {showMessage} from "@/scripts.js";
 
 export default {
     components: {
@@ -37,7 +37,7 @@ export default {
 
             if (this.form.hasErrors) {
                 Object.values(this.form.errors).forEach((error) => {
-                    showError(error);
+                    showMessage(error);
                 });
                 this.form.reset('password');
                 return;
@@ -45,7 +45,7 @@ export default {
             this.form.post(route('auth.login'), {
                 onError: (errors) => {
                     Object.values(errors).forEach((error) => {
-                        showError(error);
+                        showMessage(error);
                         this.form.reset('password');
                     })
                 }

@@ -3,6 +3,7 @@ import '../css/app.css';
 import '../css/icons.css';
 import '../css/anim.css';
 import '../css/fonts.css';
+import '../css/toast.css';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';

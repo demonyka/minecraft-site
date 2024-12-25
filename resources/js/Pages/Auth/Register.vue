@@ -2,7 +2,7 @@
 import McInput from "@/Components/McInput.vue";
 import McButton from "@/Components/McButton.vue";
 import {Head, useForm} from "@inertiajs/vue3";
-import {showError, showMessage} from "@/scripts.js";
+import {showMessage} from "@/scripts.js";
 
 export default {
     components: {
@@ -47,7 +47,7 @@ export default {
 
             if (this.form.hasErrors) {
                 Object.values(this.form.errors).forEach((error) => {
-                    showError(error);
+                    showMessage(error);
                 });
                 this.form.reset('password_confirmation');
                 return;
@@ -60,7 +60,7 @@ export default {
                 },
                 onError: (errors) => {
                     Object.values(errors).forEach((error) => {
-                        showError(error);
+                        showMessage(error);
                         this.form.reset('password_confirmation');
                     })
                 }

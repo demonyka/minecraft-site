@@ -1,6 +1,6 @@
 <script>
 import {useForm} from "@inertiajs/vue3";
-import {showError, showMessage} from "@/scripts.js";
+import {showMessage} from "@/scripts.js";
 
 export default {
     name: "LoginForm",
@@ -30,7 +30,7 @@ export default {
 
             if (this.form.hasErrors) {
                 Object.values(this.form.errors).forEach((error) => {
-                    showError(error);
+                    showMessage(error);
                 });
                 this.form.reset('password');
                 return;
@@ -38,7 +38,7 @@ export default {
             this.form.post(route('auth.login'), {
                 onError: (errors) => {
                     Object.values(errors).forEach((error) => {
-                        showError(error);
+                        showMessage(error);
                         this.form.reset('password');
                     })
                 }
