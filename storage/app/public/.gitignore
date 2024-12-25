@@ -1,5 +1,8 @@
 *
 !.gitignore
 !assets/
+!skins/
 !skins/default.png
+!capes/
 !capes/default.png
+!download/Launcher.jar

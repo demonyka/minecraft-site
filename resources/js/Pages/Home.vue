@@ -25,6 +25,15 @@ export default {
             showSnowflakes: false
         };
     },
+    methods: {
+        downloadLauncher() {
+            // Создаём ссылку для скачивания
+            const link = document.createElement('a');
+            link.href = '/storage/assets/download/Launcher.jar'; // Путь к файлу
+            link.download = 'Launcher.jar'; // Имя файла при скачивании
+            link.click(); // Инициируем скачивание
+        },
+    },
     mounted() {
         const urlParams = new URLSearchParams(window.location.search);
         const launcher = urlParams.get('launcher');
@@ -56,7 +65,7 @@ export default {
             <section v-if="loaded">
                 <GuestLayout v-if="!$page.props.auth.user"/>
                 <AuthLayout v-else/>
-                <McButton>Скачать лаунчер</McButton>
+                <McButton @click="downloadLauncher">Скачать лаунчер</McButton>
             </section>
         </transition-group>
     </HomeLayout>
