@@ -72,4 +72,10 @@ export default {
             scale: 1.1;
         }
     }
+
+    @media (max-width: 1000px) {
+        .logo {
+            width: 400px;
+        }
+    }
 </style>
