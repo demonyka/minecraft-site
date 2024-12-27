@@ -77,5 +77,8 @@ export default {
         .logo {
             width: 400px;
         }
+        p.splash {
+            font-size: 18px;
+        }
     }
 </style>
