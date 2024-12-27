@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -21,8 +22,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
-        'skin_url',
-        'cape_url',
+        'skin_id',
         'whitelisted_until'
     ];
 
@@ -45,4 +45,9 @@ class User extends Authenticatable
         'created_at' => 'datetime',
         'whitelisted_until' => 'datetime'
     ];
+
+    public function skin(): BelongsTo
+    {
+        return $this->belongsTo(Skin::class, 'skin_id', 'id');
+    }
 }
