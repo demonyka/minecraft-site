@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Skin::class, 'skin_id', 'id');
     }
+
+    public function getSkinPathAttribute(): string
+    {
+        return $this->skin()->path;
+    }
 }

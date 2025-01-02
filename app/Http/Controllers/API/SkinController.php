@@ -11,7 +11,7 @@ class SkinController
         $user = User::where('username', $username)->first();
         $skinPath = '/storage/skins/default.png';
         if ($user && isset($user->skin)) {
-            $skinPath = $user->skin->path;
+            $skinPath = $user->getSkinPathAttribute();
         }
 
         return response()->file(public_path($skinPath));
