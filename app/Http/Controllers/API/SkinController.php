@@ -14,9 +14,6 @@ class SkinController
         if ($user && isset($user->skin_path)) {
             $skinPath = $user->skin_path;
         }
-        if ($request->input('to_string') === 'true') {
-            return $skinPath;
-        }
         return response()->file(public_path($skinPath));
     }
 
