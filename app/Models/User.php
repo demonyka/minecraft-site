@@ -23,7 +23,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
-        'skin_id',
+        'skin_path',
         'whitelisted_until'
     ];
 
@@ -47,13 +47,8 @@ class User extends Authenticatable
         'whitelisted_until' => 'datetime'
     ];
 
-    public function skin(): BelongsTo
-    {
-        return $this->belongsTo(Skin::class, 'skin_id', 'id');
-    }
-
     public function getSkinPathAttribute(): string
     {
-        return $this->skin()->path;
+        return $this->skinPath ?? '';
     }
 }
