@@ -32,14 +32,52 @@ export default {
                 return;
             }
             this.downloadCooldown = true;
-            const link = document.createElement('a');
-            link.href = '/storage/download/Launcher.jar'; // Путь к файлу
-            link.download = 'Launcher.jar'; // Имя файла при скачивании
-            link.click(); // Инициируем скачивание
-            setTimeout(() => {
-                this.downloadCooldown = false;
-            }, 5000)
-        },
+
+            // Определяем платформу автоматически
+            const userAgent = navigator.userAgent.toLowerCase();
+            let platform = 'windows'; // Значение по умолчанию
+
+            if (userAgent.includes('mac')) {
+                platform = 'mac';
+            } else if (userAgent.includes('linux')) {
+                platform = 'linux';
+            }
+
+            axios({
+                method: 'get',
+                url: route('launcher.download'),
+                params: { platform }, // Передаем автоматически определенную платформу
+                responseType: 'blob', // Получаем файл в бинарном формате
+            })
+                .then((response) => {
+                    const contentDisposition = response.headers['content-disposition'];
+                    let filename = 'Launcher'; // Значение по умолчанию
+
+                    // Попробуем извлечь имя файла из заголовков (если сервер его отправляет)
+                    if (contentDisposition) {
+                        const match = contentDisposition.match(/filename="?(.+?)"?$/);
+                        if (match) {
+                            filename = match[1];
+                        }
+                    }
+
+                    const url = window.URL.createObjectURL(new Blob([response.data]));
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = filename; // Используем извлеченное имя файла
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                })
+                .catch((error) => {
+                    console.error('Ошибка при загрузке файла:', error);
+                })
+                .finally(() => {
+                    setTimeout(() => {
+                        this.downloadCooldown = false;
+                    }, 5000); // Устанавливаем задержку перед повторной загрузкой
+                });
+        }
     },
     mounted() {
         const urlParams = new URLSearchParams(window.location.search);

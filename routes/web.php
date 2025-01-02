@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LauncherController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -17,5 +18,7 @@ use Inertia\Inertia;
 */
 
 Route::inertia('/', 'Home')->name('home');
+
+Route::get('/launcher/download', [LauncherController::class, 'download'])->name('launcher.download');
 
 require __DIR__.'/auth.php';

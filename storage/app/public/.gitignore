@@ -6,4 +6,5 @@
 !capes/
 !capes/default.png
 !download/
-!download/Launcher.jar
+!download/Launcher
+!download/Launcher/*
