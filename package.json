@@ -17,8 +17,10 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
+        "@south-paw/typeface-minecraft": "^1.0.0",
         "sass": "^1.83.0",
         "scss": "^0.2.4",
+        "skinview3d": "^3.1.0",
         "vue3-toastify": "^0.2.6"
     }
 }

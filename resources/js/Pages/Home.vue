@@ -88,22 +88,12 @@ export default {
                 this.loaded = true;
             }, 1000);
         }
-
-        const currentDate = new Date();
-        const startSnowflakes = new Date(currentDate.getFullYear(), 11, 1); // 1 декабря
-        const endSnowflakes = new Date(currentDate.getFullYear(), 0, 30); // 30 января следующего года
-
-        // Если сейчас декабрь или январь, показываем снежинки
-        if (currentDate >= startSnowflakes || currentDate <= endSnowflakes) {
-            this.showSnowflakes = true;
-        }
     }
 };
 </script>
 
 <template>
     <Head title="Главная"/>
-    <Snowflakes v-if="showSnowflakes"/>
     <HomeLayout>
         <Logo :class="{'active': loaded}" class="logo"/>
         <transition-group name="fade">

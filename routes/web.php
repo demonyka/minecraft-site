@@ -19,6 +19,10 @@ use Inertia\Inertia;
 
 Route::inertia('/', 'Home')->name('home');
 
+Route::middleware(['auth'])->group(function () {
+    Route::inertia('/cabinet', 'Cabinet/Cabinet')->name('cabinet');
+});
+
 Route::get('/launcher/download', [LauncherController::class, 'download'])->name('launcher.download');
 
 require __DIR__.'/auth.php';

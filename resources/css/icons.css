@@ -31,3 +31,7 @@ i.fa.map {
 i.fa.checkmark {
     background-image: url("/storage/assets/icons/checkmark.svg");
 }
+
+i.fa.download {
+    background-image: url("/storage/assets/icons/download.svg");
+}

@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-    <McButton>Профиль</McButton>
+    <McButton @click="$inertia.visit(route('cabinet'))">Профиль</McButton>
     <McButton
         class="last-element"
         @click="$inertia.visit(route('auth.logout'))"

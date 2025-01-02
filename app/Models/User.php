@@ -49,6 +49,6 @@ class User extends Authenticatable
 
     public function getSkinPathAttribute(): string
     {
-        return $this->skinPath ?? '';
+        return $this->skin_path ?? '';
     }
 }

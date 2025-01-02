@@ -1,11 +1,30 @@
 <script>
 
+import Snowflakes from "@/Components/Snowflakes.vue";
+
 export default {
     name: "HomeLayout",
+    components: {Snowflakes},
+    data() {
+        return {
+            showSnowflakes: false,
+        }
+    },
+    mounted() {
+        const currentDate = new Date();
+        const startSnowflakes = new Date(currentDate.getFullYear(), 11, 1); // 1 декабря
+        const endSnowflakes = new Date(currentDate.getFullYear(), 0, 30); // 30 января следующего года
+
+        // Если сейчас декабрь или январь, показываем снежинки
+        if (currentDate >= startSnowflakes || currentDate <= endSnowflakes) {
+            this.showSnowflakes = true;
+        }
+    }
 }
 </script>
 
 <template>
+    <Snowflakes v-if="showSnowflakes"/>
     <div class="container">
         <video
             autoplay

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('/v1')->group(function () {
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::get('/skin/{username}', [SkinController::class, 'getSkin']);
-    Route::get('/cape/{username}', [SkinController::class, 'getCape']);
+    Route::post('/auth/login', [AuthController::class, 'login']);
+    Route::get('/storage/skin/{username}', [SkinController::class, 'getSkin'])->name('api.storage.skin');
+    Route::get('/storage/cape/{username}', [SkinController::class, 'getCape'])->name('api.storage.cape');
 });
