@@ -43,7 +43,7 @@ export default {
     }
     div.splash {
         right: 40px;
-        bottom: 10px;
+        bottom: 20px;
         position: absolute;
         display: flex;
         align-items: center;

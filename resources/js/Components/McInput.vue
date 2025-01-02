@@ -81,7 +81,7 @@ label {
     border: 2px solid #A0A0A0;
     caret-color: transparent;
     -webkit-tap-highlight-color: transparent;
-    padding: .9rem 15px .25rem;
+    padding: 0 15px;
 }
 .editable:focus {
     border-color: white;
