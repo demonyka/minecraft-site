@@ -22,8 +22,7 @@ export default {
             skinViewer.animation = new skinview3d.IdleAnimation();
             skinViewer.controls.enableZoom = false;
             skinViewer.nameTag = this.$page.props.auth.user.username;
-            skinViewer.fov = 90;
-            skinViewer.zoom = 0.75;
+            skinViewer.zoom = 0.70;
         },
         handleFileUpload(event) {
             const file = event.target.files[0];
