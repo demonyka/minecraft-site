@@ -7,7 +7,6 @@ export default {
             const audio = new Audio('/storage/assets/sounds/minecraft_click.mp3');
             audio.currentTime = 0;
             audio.play();
-            this.$emit("click");
         }
     }
 }

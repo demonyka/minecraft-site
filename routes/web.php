@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\LauncherController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CabinetController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -21,6 +21,7 @@ Route::inertia('/', 'Home')->name('home');
 
 Route::middleware(['auth'])->group(function () {
     Route::inertia('/cabinet', 'Cabinet/Cabinet')->name('cabinet');
+    Route::post('/cabinet/upload/skin', [CabinetController::class, 'uploadSkin'])->name('cabinet.upload.skin');
 });
 
 Route::get('/launcher/download', [LauncherController::class, 'download'])->name('launcher.download');

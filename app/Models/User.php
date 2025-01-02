@@ -46,9 +46,4 @@ class User extends Authenticatable
         'created_at' => 'datetime',
         'whitelisted_until' => 'datetime'
     ];
-
-    public function getSkinPathAttribute(): string
-    {
-        return $this->skin_path ?? '';
-    }
 }

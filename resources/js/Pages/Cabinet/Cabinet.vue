@@ -20,7 +20,7 @@ export default {
     <Head title="Личный кабинет" />
     <HomeLayout>
         <div class="cabinet-container">
-            <SkinContainer/>
+            <SkinContainer class="skin-container" />
             <div class="cabinet-buttons">
                 <McContainer class="cabinet-info">
 
@@ -52,5 +52,20 @@ export default {
     }
     .cabinet-info {
         min-height: 200px;
+    }
+    @media (max-width: 1500px) {
+        .cabinet-container {
+            width: 70%;
+        }
+    }
+    @media (max-width: 1300px) {
+        .cabinet-container {
+            width: 80%;
+        }
+    }
+    @media (max-width: 1000px) {
+        .skin-container {
+            display: none;
+        }
     }
 </style>
