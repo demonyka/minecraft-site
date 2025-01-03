@@ -37,13 +37,13 @@ class YookassaController extends Controller
     public function callback(Request $request, YookassaService $service)
     {
         $source = file_get_contents('php://input');
-        \Log::debug($source);
         $requestBody = json_decode($source, true);
+        \Log::debug($requestBody);
         $notification = (isset($requestBody['event']) && $requestBody['event'] === NotificationEventType::PAYMENT_SUCCEEDED)
             ? new NotificationSucceeded($requestBody)
             : new NotificationWaitingForCapture($requestBody);
+
         $notificationObject = $notification->getObject();
-        \Log::debug(json_encode($notificationObject));
         if (isset($notificationObject->status) && $notificationObject->status === 'succeeded') {
             if ($notificationObject->paid === true) {
                 $metadata = (object)$notificationObject->metadata;
@@ -53,7 +53,7 @@ class YookassaController extends Controller
                     $payment->status = 'confirmed';
                     $payment->save();
                     $user = $payment->user;
-                    $user->addBalance($payment->amount * 100);
+                    $user->addBalance($payment->amount / 100);
                 }
             }
         }
