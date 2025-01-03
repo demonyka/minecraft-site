@@ -77,6 +77,7 @@ class YookassaController extends Controller
                     if (isset($metadata->payment_id)) {
                         $paymentId = $metadata->payment_id;
                         $payment = Payment::find($paymentId);
+                        \Log::debug('payment id: ' . $paymentId);
                         $payment->status = 'confirmed';
                         $payment->save();
 
