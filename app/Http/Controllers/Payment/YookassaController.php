@@ -38,6 +38,8 @@ class YookassaController extends Controller
     {
         $source = file_get_contents('php://input');
         $requestBody = json_decode($source, true);
-        \Log::debug($requestBody);
+        $paymentId = $requestBody->object->id;
+        \Log::debug('id - ' . $paymentId);
+        return $paymentId;
     }
 }
