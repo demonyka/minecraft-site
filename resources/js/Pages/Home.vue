@@ -33,9 +33,8 @@ export default {
             }
             this.downloadCooldown = true;
 
-            // Определяем платформу автоматически
             const userAgent = navigator.userAgent.toLowerCase();
-            let platform = 'windows'; // Значение по умолчанию
+            let platform = 'default';
 
             if (userAgent.includes('mac')) {
                 platform = 'mac';
@@ -43,41 +42,24 @@ export default {
                 platform = 'linux';
             }
 
-            axios({
-                method: 'get',
-                url: route('launcher.download'),
-                params: { platform }, // Передаем автоматически определенную платформу
-                responseType: 'blob', // Получаем файл в бинарном формате
-            })
-                .then((response) => {
-                    const contentDisposition = response.headers['content-disposition'];
-                    let filename = 'Launcher'; // Значение по умолчанию
+            const paths = {
+                'linux': '/storage/download/Launcher/Launcher.jar',
+                'mac': '/storage/download/Launcher/Launcher.jar',
+                'windows': '/storage/download/Launcher/MiNEON Launcher.exe'
+            };
 
-                    // Попробуем извлечь имя файла из заголовков (если сервер его отправляет)
-                    if (contentDisposition) {
-                        const match = contentDisposition.match(/filename="?(.+?)"?$/);
-                        if (match) {
-                            filename = match[1];
-                        }
-                    }
+            this.downloadFile(paths[platform]);
+        },
 
-                    const url = window.URL.createObjectURL(new Blob([response.data]));
-                    const link = document.createElement('a');
-                    link.href = url;
-                    link.download = filename; // Используем извлеченное имя файла
-                    document.body.appendChild(link);
-                    link.click();
-                    link.remove();
-                })
-                .catch((error) => {
-                    console.error('Ошибка при загрузке файла:', error);
-                })
-                .finally(() => {
-                    setTimeout(() => {
-                        this.downloadCooldown = false;
-                    }, 5000); // Устанавливаем задержку перед повторной загрузкой
-                });
+        downloadFile(path) {
+            const link = document.createElement('a');
+            link.href = path;
+            link.download = path.split('/').pop();
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
+
     },
     mounted() {
         const urlParams = new URLSearchParams(window.location.search);
