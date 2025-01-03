@@ -52,7 +52,7 @@ class YookassaService implements PaymentInterface
             'capture' => false,
             'confirmation' => [
                 'type' => 'redirect',
-                'return_url' => route('payments.yookassa.callback'),
+                'return_url' => route('cabinet'),
             ],
             'metadata' => [
                 'payment_id' => $options['payment_id'],
