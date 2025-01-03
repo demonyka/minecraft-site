@@ -81,7 +81,7 @@ class YookassaController extends Controller
                         $payment->status = 'confirmed';
                         $payment->save();
 
-                        $user = $payment->user;
+                        $user = $payment->user();
                         $user->addBalance($payment->amount);
                     }
                 }
