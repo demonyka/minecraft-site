@@ -62,4 +62,21 @@ class YookassaService implements PaymentInterface
 
         return $payment->getConfirmation()->getConfirmationUrl();
     }
+
+    /**
+     * @throws NotFoundException
+     * @throws ResponseProcessingException
+     * @throws ApiException
+     * @throws ExtensionNotFoundException
+     * @throws BadApiRequestException
+     * @throws InternalServerError
+     * @throws ForbiddenException
+     * @throws TooManyRequestsException
+     * @throws UnauthorizedException
+     */
+    public function getPaymentInfo(string $paymentId): \YooKassa\Model\Payment\PaymentInterface
+    {
+        $client = $this->getClient();
+        return $client->getPaymentInfo($paymentId);
+    }
 }
