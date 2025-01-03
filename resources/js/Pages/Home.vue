@@ -45,19 +45,23 @@ export default {
             const paths = {
                 'linux': '/storage/download/Launcher/Launcher.jar',
                 'mac': '/storage/download/Launcher/Launcher.jar',
-                'windows': '/storage/download/Launcher/MiNEON Launcher.exe'
+                'windows': '/storage/download/Launcher/Launcher.exe'
             };
 
-            this.downloadFile(paths[platform]);
+            const names = {
+                'linux': 'MiNEON.jar',
+                'mac': 'MiNEON.jar',
+                'windows': 'MiNEON.exe',
+            }
+
+            this.downloadFile(paths[platform], names[platform]);
         },
 
-        downloadFile(path) {
+        downloadFile(path, name) {
             const link = document.createElement('a');
             link.href = path;
-            link.download = path.split('/').pop();
-            document.body.appendChild(link);
+            link.download = name;
             link.click();
-            document.body.removeChild(link);
         }
 
     },
