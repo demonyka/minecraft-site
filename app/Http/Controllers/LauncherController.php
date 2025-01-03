@@ -11,7 +11,7 @@ class LauncherController extends Controller
         $platform = $request->input('platform', 'windows');
 
         $files = [
-            'windows' => public_path('/storage/download/Launcher/Launcher.jar'),
+            'windows' => public_path('/storage/download/Launcher/MiNEON Launcher.exe'),
             'mac' => public_path('/storage/download/Launcher/Launcher.jar'),
             'linux' => public_path('/storage/download/Launcher/Launcher.jar'),
         ];
