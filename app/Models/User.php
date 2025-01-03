@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 
 /**
  * @property string $skin_path
+ * @property int $balance
  */
 class User extends Authenticatable
 {
@@ -24,6 +25,7 @@ class User extends Authenticatable
         'uuid',
         'username',
         'email',
+        'balance',
         'password',
         'skin_path',
         'whitelisted_until'

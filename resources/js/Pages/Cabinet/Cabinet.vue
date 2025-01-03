@@ -4,9 +4,11 @@ import {Head} from "@inertiajs/vue3";
 import SkinContainer from "@/Pages/Cabinet/Partials/SkinContainer.vue";
 import McButton from "@/Components/McButton.vue";
 import McContainer from "@/Components/McContainer.vue";
+import InfoContainer from "@/Pages/Cabinet/Partials/InfoContainer.vue";
 
 export default {
     components: {
+        InfoContainer,
         McContainer,
         McButton,
         SkinContainer,
@@ -19,15 +21,15 @@ export default {
 <template>
     <Head title="Личный кабинет" />
     <HomeLayout>
+        <McButton class="back-button" @click="$inertia.visit(route('home'))">
+            <i class="fa arrow"/>
+        </McButton>
         <div class="cabinet-container">
             <SkinContainer class="skin-container" />
             <div class="cabinet-buttons">
-                <McContainer class="cabinet-info">
-
-                </McContainer>
-                <McButton>Lorem</McButton>
-                <McButton>Ipsum</McButton>
-                <McButton>Lorem</McButton>
+                <InfoContainer/>
+                <McButton>Пополнить баланс</McButton>
+                <McButton>Сменить пароль</McButton>
                 <McButton>Ipsum</McButton>
             </div>
         </div>
@@ -50,8 +52,12 @@ export default {
         gap: 10px;
         width: 100%;
     }
-    .cabinet-info {
-        min-height: 200px;
+    .back-button {
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        left: 24px;
+        top: 24px;
     }
     @media (max-width: 1500px) {
         .cabinet-container {

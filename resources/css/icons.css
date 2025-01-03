@@ -35,3 +35,7 @@ i.fa.checkmark {
 i.fa.download {
     background-image: url("/storage/assets/icons/download.svg");
 }
+
+i.fa.arrow {
+    background-image: url("/storage/assets/icons/arrow.svg");
+}
