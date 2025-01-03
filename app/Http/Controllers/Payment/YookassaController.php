@@ -38,6 +38,9 @@ class YookassaController extends Controller
     {
         $source = file_get_contents('php://input');
         $requestBody = json_decode($source, true);
-        \Log::info($requestBody);
+        if ($requestBody && isset($requestBody['object'])) {
+            $object = $requestBody['object'];
+            \Log::debug($object);
+        }
     }
 }
