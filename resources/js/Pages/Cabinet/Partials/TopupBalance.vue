@@ -18,7 +18,7 @@ export default {
                 showMessage('Сумма пополнения должна быть от 100 до 10\'000 рублей');
                 return;
             }
-            axios.get(route('payments.yookassa.create'))
+            axios.get(route('payments.yookassa.create', {amount: this.amount}))
                 .then((response) => {
                     const url = response.data.url;
                     window.location.href = url; // Перенаправление на новую страницу
