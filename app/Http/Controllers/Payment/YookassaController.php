@@ -38,9 +38,12 @@ class YookassaController extends Controller
     {
         $source = file_get_contents('php://input');
         $requestBody = json_decode($source, true);
-        if ($requestBody && isset($requestBody['object'])) {
-            $object = $requestBody['object'];
-            \Log::debug($object);
+        if ($requestBody && isset($requestBody['event'])) {
+            $notification = ($requestBody['event'] === NotificationEventType::PAYMENT_SUCCEEDED)
+            ? new NotificationSucceeded($requestBody)
+            : new NotificationWaitingForCapture($requestBody);
+            $object = $notification->getObject();
+            \Log::debug(json_encode($object));
         }
     }
 }
