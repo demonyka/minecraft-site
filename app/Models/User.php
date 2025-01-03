@@ -78,5 +78,6 @@ class User extends Authenticatable
     public function addBalance(float $amount): void
     {
         $this->balance += $amount;
+        $this->save();
     }
 }
