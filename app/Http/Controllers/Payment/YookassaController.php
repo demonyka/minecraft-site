@@ -17,7 +17,7 @@ class YookassaController extends Controller
     {
         $request->validate([
             'amount' => 'required|numeric|min:100|max:10000',
-        ])
+        ]);
         $amount = (float)$request->input("amount");
         $description = "Пополнение баланса из ЛК";
 
