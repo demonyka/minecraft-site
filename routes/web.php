@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LauncherController;
 use App\Http\Controllers\CabinetController;
+use App\Http\Controllers\Payment\YookassaController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -25,5 +26,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/launcher/download', [LauncherController::class, 'download'])->name('launcher.download');
+
+Route::get('/payments/yookassa/create', [YookassaController::class, 'create'])->name('payments.yookassa.create');
+Route::match(['GET', 'POST'], '/payments/yookassa/callback', [YookassaController::class, 'callback'])->name('payments.yookassa.callback');
 
 require __DIR__.'/auth.php';

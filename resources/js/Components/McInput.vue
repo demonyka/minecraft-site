@@ -26,6 +26,11 @@ export default {
             type: String,
             required: false,
             default: ''
+        },
+        placeholder: {
+            type: String,
+            required: false,
+            default: ''
         }
     },
     methods: {
@@ -47,6 +52,7 @@ export default {
             :class="{'invalid': invalid}"
             :type="type"
             :name="name"
+            :placeholder="placeholder"
         />
     </div>
 </template>
@@ -96,5 +102,16 @@ label.invalid,
 .editable.invalid,
 .editable.invalid::placeholder {
     color: firebrick;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
 }
 </style>

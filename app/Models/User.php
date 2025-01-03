@@ -74,4 +74,9 @@ class User extends Authenticatable
         $this->skin_path = '/storage/' . $filePath;
         $this->save();
     }
+
+    public function addBalance(float $amount): void
+    {
+        $this->balance += $amount;
+    }
 }

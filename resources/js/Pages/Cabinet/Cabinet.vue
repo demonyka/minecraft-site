@@ -5,9 +5,11 @@ import SkinContainer from "@/Pages/Cabinet/Partials/SkinContainer.vue";
 import McButton from "@/Components/McButton.vue";
 import McContainer from "@/Components/McContainer.vue";
 import InfoContainer from "@/Pages/Cabinet/Partials/InfoContainer.vue";
+import TopupBalance from "@/Pages/Cabinet/Partials/TopupBalance.vue";
 
 export default {
     components: {
+        TopupBalance,
         InfoContainer,
         McContainer,
         McButton,
@@ -28,9 +30,7 @@ export default {
             <SkinContainer class="skin-container" />
             <div class="cabinet-buttons">
                 <InfoContainer/>
-                <McButton>Пополнить баланс</McButton>
-                <McButton>Сменить пароль</McButton>
-                <McButton>Ipsum</McButton>
+                <TopupBalance/>
             </div>
         </div>
     </HomeLayout>
