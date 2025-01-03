@@ -43,7 +43,20 @@ class YookassaController extends Controller
             ? new NotificationSucceeded($requestBody)
             : new NotificationWaitingForCapture($requestBody);
             $object = $notification->getObject();
-            \Log::debug(json_encode($object));
+            if (isset($object->status) && $object->status == 'succeeded') {
+                if ($object->paid === true) {
+                    $metadata = $object->metadata;
+                    if (isset($metadata->payment_id)) {
+                        $paymentId = $metadata->payment_id;
+                        $payment = Payment::find($paymentId);
+                        $payment->status = 'confirmed';
+                        $payment->save();
+
+                        $user = $payment->user;
+                        $user->addBalance($payment->amount);
+                    }
+                }
+            }
         }
     }
 }
