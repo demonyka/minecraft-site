@@ -16,6 +16,11 @@ export default {
                 this.status = true;
             }
         }
+    },
+    methods: {
+        formatBalance(balance) {
+            return parseFloat(balance).toString();
+        }
     }
 }
 </script>
@@ -24,7 +29,7 @@ export default {
     <McContainer class="cabinet-info">
         <p>Почта: {{ $page.props.auth.user.email }}</p>
         <p>Дата регистрации: {{ new Date($page.props.auth.user.created_at).toLocaleString('ru') }}</p>
-        <p>Баланс: {{ $page.props.auth.user.balance }}$</p>
+        <p>Баланс: {{ formatBalance($page.props.auth.user.balance) }} руб.</p>
         <p>Пропуск: {{ status ? 'Активен до ' + new Date($page.props.auth.user.whitelisted_until).toLocaleString(): 'Неактивен' }}</p>
     </McContainer>
 </template>
