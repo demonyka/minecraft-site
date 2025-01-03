@@ -7,6 +7,15 @@ use App\Models\Payment;
 use App\Services\Payment\YookassaService;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Events\NotificationFailed;
+use YooKassa\Common\Exceptions\ApiException;
+use YooKassa\Common\Exceptions\BadApiRequestException;
+use YooKassa\Common\Exceptions\ExtensionNotFoundException;
+use YooKassa\Common\Exceptions\ForbiddenException;
+use YooKassa\Common\Exceptions\InternalServerError;
+use YooKassa\Common\Exceptions\NotFoundException;
+use YooKassa\Common\Exceptions\ResponseProcessingException;
+use YooKassa\Common\Exceptions\TooManyRequestsException;
+use YooKassa\Common\Exceptions\UnauthorizedException;
 use YooKassa\Model\Notification\NotificationEventType;
 use YooKassa\Model\Notification\NotificationSucceeded;
 use YooKassa\Model\Notification\NotificationWaitingForCapture;
@@ -34,6 +43,18 @@ class YookassaController extends Controller
 
         return response()->json(['url' => $url]);
     }
+
+    /**
+     * @throws NotFoundException
+     * @throws ResponseProcessingException
+     * @throws ApiException
+     * @throws ExtensionNotFoundException
+     * @throws BadApiRequestException
+     * @throws InternalServerError
+     * @throws ForbiddenException
+     * @throws TooManyRequestsException
+     * @throws UnauthorizedException
+     */
     public function callback(Request $request, YookassaService $service)
     {
         $source = file_get_contents('php://input');
@@ -43,6 +64,13 @@ class YookassaController extends Controller
             ? new NotificationSucceeded($requestBody)
             : new NotificationWaitingForCapture($requestBody);
             $object = $notification->getObject();
+
+            if (isset($object->status) && $object->status == 'waiting_for_capture') {
+                $service->getClient()->capturePayment([
+                    'amount' => $object->amount,
+                ], $object->id, uniqid('', true));
+            }
+
             if (isset($object->status) && $object->status == 'succeeded') {
                 if ($object->paid === true) {
                     $metadata = $object->metadata;

@@ -19,7 +19,7 @@ use YooKassa\Common\Exceptions\UnauthorizedException;
 
 class YookassaService implements PaymentInterface
 {
-    private function getClient(): Client
+    public function getClient(): Client
     {
         $client = new Client();
         $client->setAuth(config('services.yookassa.shop_id'), config('services.yookassa.secret_key'));
@@ -61,22 +61,5 @@ class YookassaService implements PaymentInterface
         ], uniqid('', true));
 
         return $payment->getConfirmation()->getConfirmationUrl();
-    }
-
-    /**
-     * @throws NotFoundException
-     * @throws ResponseProcessingException
-     * @throws ApiException
-     * @throws ExtensionNotFoundException
-     * @throws BadApiRequestException
-     * @throws InternalServerError
-     * @throws ForbiddenException
-     * @throws TooManyRequestsException
-     * @throws UnauthorizedException
-     */
-    public function getPaymentInfo(string $paymentId): \YooKassa\Model\Payment\PaymentInterface
-    {
-        $client = $this->getClient();
-        return $client->getPaymentInfo($paymentId);
     }
 }
