@@ -34,7 +34,7 @@ export default {
             this.downloadCooldown = true;
 
             const userAgent = navigator.userAgent.toLowerCase();
-            let platform = 'default';
+            let platform = 'windows';  // Дефолтная платформа - windows
 
             if (userAgent.includes('mac')) {
                 platform = 'mac';
@@ -52,7 +52,7 @@ export default {
                 'linux': 'MiNEON.jar',
                 'mac': 'MiNEON.jar',
                 'windows': 'MiNEON.exe',
-            }
+            };
 
             this.downloadFile(paths[platform], names[platform]);
         },
@@ -63,7 +63,6 @@ export default {
             link.download = name;
             link.click();
         }
-
     },
     mounted() {
         const urlParams = new URLSearchParams(window.location.search);
