@@ -37,12 +37,13 @@ class YookassaController extends Controller
     public function callback(Request $request, YookassaService $service)
     {
         $source = file_get_contents('php://input');
+        \Log::debug($source);
         $requestBody = json_decode($source, true);
-        dd($requestBody);
-        $notification = ($requestBody['event'] === NotificationEventType::PAYMENT_SUCCEEDED)
+        $notification = (isset($requestBody['event']) && $requestBody['event'] === NotificationEventType::PAYMENT_SUCCEEDED)
             ? new NotificationSucceeded($requestBody)
             : new NotificationWaitingForCapture($requestBody);
         $notificationObject = $notification->getObject();
+        \Log::debug(json_encode($notificationObject));
         if (isset($notificationObject->status) && $notificationObject->status === 'succeeded') {
             if ($notificationObject->paid === true) {
                 $metadata = (object)$notificationObject->metadata;
