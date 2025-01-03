@@ -19,6 +19,9 @@ class SkinController
 
     public function getCape(string $username)
     {
-        return null;
+        $user = User::where('username', $username)->first();
+        if ($user && isset($user->cape_path)) {
+            return response()->file(public_path($user->cape_path));
+        }
     }
 }

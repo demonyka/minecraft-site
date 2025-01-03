@@ -10,12 +10,13 @@ export default {
     methods: {
         async loadSkin() {
             const skinPath = this.$page.props.auth.user.skin_path ?? '/storage/skins/default.png';
-            const capePath = route('api.storage.cape', { username: this.$page.props.auth.user.username });
+            const capePath = this.$page.props.auth.user.cape_path;
             let skinViewer = new skinview3d.SkinViewer({
                 canvas: document.getElementById("skinContainer"),
                 width: 376,
                 height: 576,
                 skin: skinPath,
+                cape: capePath,
             });
             skinViewer.autoRotate = true;
             skinViewer.autoRotateSpeed = 0.25;
