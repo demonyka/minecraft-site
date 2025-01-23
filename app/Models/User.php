@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 /**
  * @property string $skin_path
  * @property int $balance
+ * @property int $referal_id
  */
 class User extends Authenticatable
 {
@@ -28,7 +29,7 @@ class User extends Authenticatable
         'balance',
         'password',
         'skin_path',
-        'whitelisted_until'
+        'referal_id'
     ];
 
     /**
@@ -48,7 +49,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'created_at' => 'datetime',
-        'whitelisted_until' => 'datetime'
     ];
 
     public function uploadSkin(UploadedFile $file): void

@@ -25,11 +25,6 @@ class AuthController extends Controller
             return response()->json(["Message" => "Неверный логин или пароль"], 401);
         }
 
-//        if (!$user->whitelisted_until || $user->whitelisted_until < now()) {
-//            echo "У Вас нет действующего пропуска";
-//            return;
-//        }
-
         return response()->json(["Login" => $user->username, "UserUuid" => $user->uuid, "Message" => "Успешная авторизация"]);
     }
 

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->datetime('whitelisted_until')->nullable()->after('remember_token');
+            $table->foreignId('referal_id')->nullable()->constrained('users')->nullOnDelete();
         });
     }
 
@@ -22,7 +22,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('whitelisted_until');
+            $table->dropForeign('users_referal_id_foreign');
+            $table->dropColumn('referal_id');
         });
     }
 };

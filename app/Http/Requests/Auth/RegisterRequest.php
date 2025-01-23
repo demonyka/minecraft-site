@@ -14,6 +14,7 @@ class RegisterRequest extends FormRequest
             'username' => 'required|unique:users,username|min:4|max:16',
             'email' => 'required|email|unique:users,email|max:255',
             'password' => 'required|min:6|max:64|confirmed',
+            'referal' => 'nullable|exists:users,username',
         ];
     }
 
@@ -23,6 +24,14 @@ class RegisterRequest extends FormRequest
         $user->username = $this->input('username');
         $user->email = $this->input('email');
         $user->password = Hash::make($this->input('password'));
+
+        if ($this->input('referal')) {
+            $referal = User::where('username', $this->input('referal'))->first();
+            if ($referal) {
+                $user->referal_id = $referal->id;
+            }
+        }
+
         $user->save();
     }
 

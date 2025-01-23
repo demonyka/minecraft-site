@@ -18,6 +18,7 @@ export default {
                 email: "",
                 password: "",
                 password_confirmation: "",
+                referal: ""
             })
         }
     },
@@ -109,6 +110,15 @@ export default {
                 :invalid="form.errors.password_confirmation"
                 type="password"
                 @input="form.clearErrors('password_confirmation')"
+            />
+            <McInput
+                style="margin-top: 12px"
+                v-model="form.referal"
+                label="Ник пригласившего"
+                name="new-password"
+                :invalid="form.errors.referal"
+                type="text"
+                @input="form.clearErrors('referal')"
             />
             <McButton type="submit" style="margin-top: 6px">Зарегистрироваться</McButton>
             <McButton type="button" @click="$inertia.visit(route('auth.login'))">Уже есть аккаунт?</McButton>

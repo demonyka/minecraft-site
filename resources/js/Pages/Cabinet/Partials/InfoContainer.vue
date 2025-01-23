@@ -10,12 +10,7 @@ export default {
         }
     },
     mounted() {
-        if (this.$page.props.auth.user.whitelisted_until) {
-            const whitelistDate = new Date(this.$page.props.auth.user.whitelisted_until);
-            if (new Date() < whitelistDate) {
-                this.status = true;
-            }
-        }
+
     },
     methods: {
         formatBalance(balance) {
@@ -30,7 +25,6 @@ export default {
         <p>Почта: {{ $page.props.auth.user.email }}</p>
         <p>Дата регистрации: {{ new Date($page.props.auth.user.created_at).toLocaleString('ru') }}</p>
         <p>Баланс: {{ formatBalance($page.props.auth.user.balance) }} руб.</p>
-        <p>Пропуск: {{ status ? 'Активен до ' + new Date($page.props.auth.user.whitelisted_until).toLocaleString(): 'Неактивен' }}</p>
     </McContainer>
 </template>
 
